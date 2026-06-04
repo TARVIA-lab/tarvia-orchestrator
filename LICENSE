@@ -1,0 +1,11 @@
+Copyright (c) 2026 TARVIA-lab. All rights reserved.
+
+This software is provided under the Apache License 2.0. See the LICENSE file
+for details.
+
+This orchestrator integrates multiple TARVIA-lab repositories (variant calling,
+RNA-seq analysis, LLM interpretation, benchmarking, drug discovery) which may
+have their own licenses and terms.
+
+When deploying this orchestrator, ensure compliance with all downstream repo
+licenses and API terms (Anthropic API, NCBI services, PDB access, etc.).

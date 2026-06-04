@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tarvia-orchestrator"
+version = "0.1.0"
+description = "Unified pipeline orchestrator for TARVIA-lab oncology AI stack: variant calling → interpretation → evaluation → drug discovery."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.28",
+    "pyyaml>=6.0",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "jinja2>=3.0",
+    "rich>=13.0",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+integrations = [
+    "ngs-variant-plugin>=0.1",
+    "ngs-rnaseq-plugin>=0.1",
+    "ngs-scrna-plugin>=0.1",
+    "llm-variant-interpreter>=0.1",
+    "tarvia-benchmark>=0.1",
+    "hgsoc-relb-integrin-pipeline>=0.2",
+]
+api = ["fastapi>=0.100", "uvicorn>=0.23"]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "black>=23.0", "mypy>=1.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+tarvia-run = "tarvia_orchestrator.cli:main"
+tarvia-status = "tarvia_orchestrator.cli:status"
+tarvia-api = "tarvia_orchestrator.api:main"

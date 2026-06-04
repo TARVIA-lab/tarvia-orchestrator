@@ -1,0 +1,43 @@
+# TARVIA Orchestrator Configuration Example
+# Usage: tarvia-run --config config_example.yaml --execute
+
+patient:
+  patient_id: PATIENT_001
+  bam: /data/patient_001.bam
+  tumor_type: "Non-small cell lung adenocarcinoma"
+  metadata:
+    age: 62
+    smoking_history: current
+    prior_treatment: none
+
+stages:
+  variant_calling:
+    enabled: true
+    reference_genome: /refs/GRCh38/genome.fa
+    filter_pass: true
+
+  rnaseq_analysis:
+    enabled: true
+
+  scrna_analysis:
+    enabled: false
+
+  variant_interpretation:
+    enabled: true
+    max_variants: 30
+    batch_size: 8
+
+  drug_discovery:
+    enabled: true
+    targets: ["RelB", "IntegrinAlphaVBeta3"]
+    max_candidates: 10
+
+tarvia_gates:
+  variant_threshold: 80.0      # >80 mean → approve clinical report
+  structure_threshold: 75.0    # >75 mean → approve synthesis
+  min_inter_rater_kappa: 0.80  # benchmark validity
+
+output:
+  directory: results/patient_001
+  formats: ["json", "html", "csv"]
+  keep_intermediates: true
