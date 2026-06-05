@@ -158,7 +158,7 @@ def run_pipeline(args):
         log.info("=" * 60)
         log.info("PIPELINE SUMMARY")
         log.info("=" * 60)
-        log.info(f"Stages Completed: {result['stages_completed']}")
+        log.info(f"Stages Completed: {len(result.get('stages', []))}")
         if "gates" in result:
             for gate in result["gates"]:
                 status_icon = "✅" if gate["decision"] in ["PASS", "APPROVE"] else "❌"
